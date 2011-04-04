@@ -1,0 +1,34 @@
+<html>
+<head><title>My Test Extension Options</title></head>
+<script type="text/javascript">
+
+// Saves options to localStorage.
+function save_options() {
+	localStorage["pod"] = document.getElementById("pod").value;
+	
+	// Update status to let user know options were saved.
+	var status = document.getElementById("status");
+	status.innerHTML = "Options Saved.";
+	setTimeout(function(){status.innerHTML = ""}, 750);
+}
+
+// Restores select box state to saved value from localStorage.
+function restore_options() {
+	var p = localStorage.getItem('pod');
+	if (!p) {
+		return;
+	}
+	document.getElementById('pod').value = p;
+}
+
+</script>
+
+<body onload="restore_options()">
+
+<h2>Your diaspora host</h2>
+<label>https://</label><input type="text" name="pod" value="joindiaspora.com" id="pod">
+
+<br>
+<button onclick="save_options()">Save</button><span id="status"></span>
+</body>
+</html>

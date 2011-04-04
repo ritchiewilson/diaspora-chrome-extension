@@ -6,7 +6,6 @@
     "default_icon": "favicon.ico",
     "popup": "index.html"
   },
-  "permissions": [
-    "tabs"
-  ]
+  "permissions": ["tabs"],
+  "options_page": "options.html"
 }
