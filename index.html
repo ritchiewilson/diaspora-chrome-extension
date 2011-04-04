@@ -1,0 +1,16 @@
+<script>
+f=chrome.tabs.getSelected(null,
+	function(tab){
+		var pod = "http://diasp.eu/bookmarklet",
+			url = "?url="+encodeURIComponent(tab.url),
+			title = "&title="+encodeURIComponent(tab.title),
+			notes = "&notes="+encodeURIComponent(""),
+			version = "&v=1",
+			noui = "&noui=1",
+			jump = "&jump=doclose",
+			name = "diasporav1",
+			features = 'location=yes,links=no,scrollbars=no,toolbar=no,width=620,height=250'
+		a=function(){window.open(pod+url+title+notes+version+noui+jump, name, features)}
+		setTimeout(a,0);
+})
+</script>
