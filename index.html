@@ -2,24 +2,30 @@
 	<head>
 		<style>
 		body{
-			width:300px;
+			width:250px;
+			font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 		}
 		</style>
 	</head>
 	<body onload="restore_options()">
 		<div id="options" style="display:none">
-			<h2>Your diaspora host</h2>
+			<img src="logo_caps.png">
+			<br><br>
+			<span>Your diaspora host:</span>
+			<br>
 			<label>https://</label><input type="text" name="pod" value="joindiaspora.com" id="pod">
 			<br>
 			<button onclick="save_options()">Save</button><span id="status"></span>
 		</div>
 		<script>
+		// get saved pod info, or ask for it
 		if(localStorage.getItem('pod')){
 			newWin();
 		}
 		else{
 			document.getElementById('options').style.display="block";
 		}
+		
 		function newWin(){
 			chrome.tabs.getSelected(null,
 				function(tab){
@@ -38,6 +44,7 @@
 				}
 			);
 		}
+		
 		// Saves options to localStorage.
 		function save_options() {
 			localStorage["pod"] = document.getElementById("pod").value;
@@ -45,8 +52,7 @@
 			// Update status to let user know options were saved.
 			var status = document.getElementById("status");
 			status.innerHTML = "Options Saved.";
-			setTimeout(function(){status.innerHTML = ""}, 750);
-			newWin();
+			setTimeout(function(){status.innerHTML = "";newWin();}, 750);
 			
 		}
 

@@ -1,5 +1,17 @@
 <html>
-<head><title>My Test Extension Options</title></head>
+	<head>
+		<title>Diaspora-Chrome Options</title>
+		<style>
+		body{
+			font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+		}
+		#options{
+			margin-left: auto;
+			margin-right: auto;
+			width:300px;
+		}
+		</style>
+	</head>
 <script type="text/javascript">
 
 // Saves options to localStorage.
@@ -24,11 +36,14 @@ function restore_options() {
 </script>
 
 <body onload="restore_options()">
-
-<h2>Your diaspora host</h2>
-<label>https://</label><input type="text" name="pod" value="joindiaspora.com" id="pod">
-
-<br>
-<button onclick="save_options()">Save</button><span id="status"></span>
+<div id="options">
+	<img src="logo_caps.png">
+	<br><br>
+		<span>Your diaspora host:</span>
+		<br>
+		<label>https://</label><input type="text" name="pod" value="joindiaspora.com" id="pod">
+		<br>
+		<button onclick="save_options()">Save</button><span id="status"></span>
+	</div>
 </body>
 </html>
