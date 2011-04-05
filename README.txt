@@ -14,6 +14,5 @@ nice to distribute this sans Google, so any ideas on that front
 also welcomed.
 
 TODOs:
-Get selected text to include into post.
 Generally make prettier
 Look into Firefox plugins?
