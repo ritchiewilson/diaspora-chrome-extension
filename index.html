@@ -34,8 +34,10 @@
 			<br>
 			<button onclick="save_options()">Save</button><span id="status"></span>
 		</div>
+		
+		
 		<script>
-		// get saved pod info, or ask for it
+		// get saved pod info, else ask for it
 		if(localStorage.getItem('pod')){
 			newWin();
 		}
@@ -44,22 +46,22 @@
 		}
 		
 		function newWin(){
-			chrome.tabs.getSelected(null,
-				function(tab){
+			chrome.tabs.getSelected(null, function(tab){
+				chrome.tabs.sendRequest(tab.id, {method:"getSelection"}, function(r){
 					var p=localStorage.getItem('pod'),
 						pod = "https://"+p+"/bookmarklet",
 						url = "?url="+encodeURIComponent(tab.url),
 						title = "&title="+encodeURIComponent(tab.title),
-						notes = "&notes="+encodeURIComponent(""),
+						notes = "&notes="+encodeURIComponent(r.data),
 						version = "&v=1",
 						noui = "&noui=1",
 						jump = "&jump=doclose",
 						name = "diasporav1",
-						features = 'location=yes,links=no,scrollbars=no,toolbar=no,width=620,height=250'
-					a=function(){window.open(pod+url+title+notes+version+noui+jump, name, features)}
-					setTimeout(a,0);
-				}
-			);
+						features = 'location=yes,links=no,scrollbars=no,toolbar=no,width=620,height=250';
+						a=function(){window.open(pod+url+title+notes+version+noui+jump, name, features)}
+						setTimeout(a,0);
+				});
+			});
 		}
 		
 		// Saves options to localStorage.

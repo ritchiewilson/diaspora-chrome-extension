@@ -6,6 +6,16 @@
     "default_icon": "favicon.ico",
     "popup": "index.html"
   },
-  "permissions": ["tabs"],
+  "permissions": [
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+    "matches": ["<all_urls>"],
+    "js": ["content_script.js"],
+    "run_at": "document_start",
+    "all_frames": true
+    }
+ ],
   "options_page": "options.html"
 }
